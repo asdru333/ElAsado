@@ -21,8 +21,8 @@ export class NavbarComponent implements OnInit {
     this.isOpenServices = false;
     this.isLogin = false;
     this.linksOne = [
-      {name:"HOME",link:"/"},
-      {name:"SOBRE NOSOTROS",link:"/SobreNosotros"},
+      {name:"HOME",link:""},
+      {name:"SOBRE NOSOTROS",link:"/about"},
     ];
 
     this.linksTwo = [

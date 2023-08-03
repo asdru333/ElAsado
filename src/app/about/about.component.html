@@ -1,0 +1,24 @@
+<div class='flex flex-grow min-h-[calc(100vh-20rem)] lg:flex-row flex-col bg-gray-900 text-white py-4 2xl:px-48 xl:px-32 md:px-12 px-2 justify-between'>
+  <div class="flex flex-col mt-8 lg:gap-y-10 gap-y-4 lg:w-2/12 w-full">
+    <div (click)="changeIndex(0)" class="w-full text-2xl font-semibold rounded-2xl cursor-pointer"
+    [ngClass]="index == 0 ? 'bg-asado-red text-black' : 'bg-white text-black'">
+      <p class="px-4 my-1 lg:text-right text-center">Sobre nosotros</p>
+    </div>
+    <div (click)="changeIndex(1)" class="w-full text-2xl font-semibold rounded-2xl cursor-pointer"
+    [ngClass]="index == 1 ? 'bg-asado-red text-black' : 'bg-white text-black'">
+      <p class="mx-4 my-1 lg:text-right text-center">Historia</p>
+    </div>
+    <div (click)="changeIndex(2)" class="w-full text-2xl font-semibold rounded-2xl cursor-pointer"
+    [ngClass]="index == 2 ? 'bg-asado-red text-black' : 'bg-white text-black'">
+      <p class="mx-4 my-1 lg:text-right text-center">Valores</p>
+    </div>
+    <div (click)="changeIndex(3)" class="w-full text-2xl font-semibold rounded-2xl cursor-pointer"
+    [ngClass]="index == 3 ? 'bg-asado-red text-black' : 'bg-white text-black'">
+      <p class="mx-4 my-1 lg:text-right text-center">Misión</p>
+    </div>
+  </div>
+  <div class="flex-col mt-8 lg:gap-y-10 gap-y-4 lg:w-8/12 w-full">
+    <img class="w-full h-[500px]" src={{content.img}}>
+    <p class="text-xl text-white text-justify whitespace-pre-line">{{content.text}}</p>
+  </div>
+</div>
