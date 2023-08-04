@@ -1,5 +1,5 @@
-<div class="flex flex-grow min-h-[calc(100vh-20rem)] bg-gray-900 text-white py-8 2xl:px-48 xl:px-32 md:px-12 px-2 justify-center">
-  <div class="flex flex-col bg-gray-700 w-1/2 h-[400px] py-3 px-6 rounded-2xl justify-center gap-y-6" [ngClass]="hasSubmitted ? 'h-[500px]' : 'h-[400px]'">
+<div class="flex flex-grow min-h-[calc(100vh-20rem)] bg-img text-white py-8 2xl:px-48 xl:px-32 md:px-12 px-2 justify-center">
+  <div class="flex flex-col bg-gray-900 lg:w-1/2 w-full h-[400px] py-3 px-6 rounded-2xl justify-center gap-y-6" [ngClass]="hasSubmitted ? 'h-[500px]' : 'h-[400px]'">
     <p class="text-center text-3xl mt-4 font-bold">Inicie sesión</p>
     <form [formGroup]="loginForm" class="flex flex-col">
       <input matInput placeholder="Correo" formControlName="email" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
@@ -19,7 +19,7 @@
       <mat-error *ngIf="failedLogin" class="mb-3 text-center">
         Las credenciales que ingresó son incorrectas
       </mat-error>
-      <div class="flex w-2/12 justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="submit()">
+      <div class="flex lg:w-2/12 w-auto justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="submit()">
         <p class="text-xl font-semibold">Login</p>
       </div>
       <p class="text-center my-6">¿No tienes una cuenta? <b>Registrate</b></p>

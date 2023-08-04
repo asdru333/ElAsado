@@ -1,16 +1,16 @@
 <div class='shadow-md w-full top-0 left-0 sticky z-[3]'>
   <div class='lg:flex items-center bg-black text-white py-4 2xl:px-48 xl:px-32 md:px-12 px-2 text-lg font-semibold font-sans gap-2'>
-    <div class='font-bold cursor-pointer flex lg:mr-8 w-2/12 text-asado-red'>
-      <div class="flex flex-col items-center">
+    <div class='font-bold cursor-pointer flex lg:mr-8 lg:w-2/12 w-auto text-asado-red'>
+      <a class="flex flex-col items-center" routerLink="/">
         <span class="material-icons text-6xl">restaurant_menu</span>
-        <p class="text text-3xl">El Asado</p>
-      </div>
+        <p class="inline text text-3xl">El Asado</p>
+      </a>
     </div>
     <div (click)="toggleNavbar()" class='absolute right-8 top-6 cursor-pointer lg:hidden w-7 h-7'>
       <span class="material-icons">{{isOpenMenu ? 'clear' : 'menu'}}</span>
     </div>
     <div class="lg:flex lg:flex-row justify-between 2xl:gap-x-20 lg:gap-x-10 gap-x-0 lg:items-center lg:pb-0 lg:pl-0 pb-4 md:pl-9 pl-2 lg:static bg-black text-white lg:z-auto
-    z-[-1] left-0 w-10/12 absolute transition-all duration-500 ease-in" [ngClass]="isOpenMenu ? 'flex flex-col' : 'hidden'">
+    z-[-1] right-0 w-10/12 absolute transition-all duration-500 ease-in" [ngClass]="isOpenMenu ? 'flex flex-col' : 'hidden'">
       <div *ngFor="let links of linksOne" class='block mx-4 my-2'>
         <a routerLink={{links.link}} class="hover:text-asado-red">{{links.name}}</a>
       </div>
