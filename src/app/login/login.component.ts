@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
   constructor() {
     this.loginForm = new FormGroup ({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.minLength(8)]),
     });
     this.hasSubmitted = false;
   }
@@ -28,5 +28,15 @@ export class LoginComponent implements OnInit{
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  submit() {
+    const { email, password } = this.loginForm.value;
+
+    if (!this.loginForm.valid || !email || !password) {
+      console.log('fracaso');
+      this.hasSubmitted = true;
+    }
+    console.log('exito');
   }
 }
