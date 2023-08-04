@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from './models/links';
+import { AuthenticationServiceService} from 'src/app/services/authentication-service.service';
+import { User } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +14,19 @@ export class NavbarComponent implements OnInit {
 
   isOpenMenu: boolean;
   isOpenServices: boolean;
-  isLogin: boolean;
+  isLogin: boolean
 
   linksOne: Link[];
   linksTwo: Link[];
   menu: Link[];
 
-  constructor() {
+  user$: Observable<User | null>;
+
+  constructor(public authenticationService : AuthenticationServiceService, private router: Router) {
     this.isOpenMenu = false;
     this.isOpenServices = false;
-    this.isLogin = false;
+    this.isLogin = false
+    this.user$ = this.authenticationService.getCurrentUser();
     this.linksOne = [
       {name:"HOME",link:""},
       {name:"SOBRE NOSOTROS",link:"/about"},
@@ -39,6 +46,13 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user$.subscribe(user => {
+      if (user) {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
+      }
+    });
   }
 
   toggleNavbar(): void {
@@ -63,5 +77,11 @@ export class NavbarComponent implements OnInit {
 
   toggleDropdown(): void {
     this.isOpenServices = !this.isOpenServices
+  }
+
+  logout() {
+    this.authenticationService.logout().subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 }

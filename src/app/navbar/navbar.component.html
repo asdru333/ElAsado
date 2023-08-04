@@ -14,9 +14,12 @@
       <div *ngFor="let links of linksOne" class='block mx-4 my-2'>
         <a routerLink={{links.link}} class="hover:text-asado-red">{{links.name}}</a>
       </div>
-      <a class='block mx-4 my-2 hover:text-asado-red' [routerLink]="isLogin ? ['/logout'] : ['/login']">
-        {{isLogin ? 'CERRAR SESIÓN' : 'INICIAR SESIÓN'}}
+      <a class='block mx-4 my-2 hover:text-asado-red' routerLink="/login" *ngIf="!isLogin">
+        INICIAR SESIÓN
       </a>
+      <p class='block mx-4 my-2 hover:text-asado-red cursor-pointer' (click)="logout()" *ngIf="isLogin">
+        CERRAR SESIÓN
+      </p>
       <div class="relative group" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
         <div class='flex items-center'>
           <div class='block mx-4 my-2 '>

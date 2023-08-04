@@ -16,6 +16,8 @@ import { from } from 'rxjs';
 })
 export class AuthenticationServiceService {
 
+  currentUser$ = authState(this.auth);
+
   constructor(private auth: Auth) { }
 
   login(username: string, password: string) {
@@ -24,5 +26,9 @@ export class AuthenticationServiceService {
 
   logout() {
     return from(this.auth.signOut())
+  }
+
+  getCurrentUser() {
+    return this.currentUser$;
   }
 }
