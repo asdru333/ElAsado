@@ -10,8 +10,14 @@
         Por favor entre un correo con el formato correcto
       </mat-error>
       <input matInput type="password" placeholder="Password" formControlName="password" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
-      <mat-error *ngIf="password?.errors?.['minLength'] && hasSubmitted" class="mb-3">
+      <mat-error *ngIf="password?.errors?.['required'] && hasSubmitted" class="mb-3">
+        Debe ingresar la contraseña
+      </mat-error>
+      <mat-error *ngIf="password?.errors?.['minlength'] && hasSubmitted" class="mb-3">
         La contraseña debe tener mínimo 8 carácteres
+      </mat-error>
+      <mat-error *ngIf="failedLogin" class="mb-3 text-center">
+        Las credenciales que ingresó son incorrectas
       </mat-error>
       <div class="flex w-2/12 justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="submit()">
         <p class="text-xl font-semibold">Login</p>

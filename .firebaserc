@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "elasado-fe85c": {
+      "hosting": {
+        "ElAsado": [
+          "elasado"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "elasado-fe85c"
+  }
+}

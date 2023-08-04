@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   constructor() {
     this.isOpenMenu = false;
     this.isOpenServices = false;
-    this.isLogin = false;
+    this.isLogin = true;
     this.linksOne = [
       {name:"HOME",link:""},
       {name:"SOBRE NOSOTROS",link:"/about"},

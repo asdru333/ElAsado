@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationServiceService } from 'src/app/services/authentication-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,17 +11,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit{
   loginForm : FormGroup;
   hasSubmitted : boolean;
+  failedLogin: boolean;
 
   ngOnInit(): void {
 
   }
 
-  constructor() {
+  constructor(private authenticationService : AuthenticationServiceService, private router: Router) {
     this.loginForm = new FormGroup ({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.minLength(8)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
     this.hasSubmitted = false;
+    this.failedLogin = false;
   }
 
   get email() {
@@ -34,9 +38,10 @@ export class LoginComponent implements OnInit{
     const { email, password } = this.loginForm.value;
 
     if (!this.loginForm.valid || !email || !password) {
-      console.log('fracaso');
       this.hasSubmitted = true;
+      return;
     }
-    console.log('exito');
+
+    this.authenticationService.login(email, password).then(() => {this.router.navigate(['']);}).catch(() => {this.failedLogin = true})
   }
 }
