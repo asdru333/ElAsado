@@ -1,3 +1,52 @@
-<p>
-  register works!
-</p>
+<div class="flex flex-grow min-h-[calc(100vh-20rem)] bg-img text-white py-8 2xl:px-48 xl:px-32 md:px-12 px-2 justify-center">
+  <div class="flex flex-col bg-gray-900 lg:w-1/2 w-full h-auto py-3 px-6 rounded-2xl justify-center gap-y-6" [ngClass]="hasSubmitted ? 'h-[500px]' : 'h-[400px]'">
+    <p class="text-center text-3xl mt-4 font-bold">Inicie sesión</p>
+    <form [formGroup]="registerForm" class="flex flex-col">
+      <input matInput placeholder="Nombre" formControlName="name" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
+      <mat-error *ngIf="name?.errors?.['required'] && hasSubmitted" class="mb-3">
+        El nombre es requerido
+      </mat-error>
+      <input matInput placeholder="Apellidos" formControlName="surnames" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
+      <mat-error *ngIf="surnames?.errors?.['required'] && hasSubmitted" class="mb-3">
+        Los apellidos es requerido
+      </mat-error>
+      <input matInput placeholder="Teléfono" formControlName="phone" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
+      <mat-error *ngIf="phone?.errors?.['required'] && hasSubmitted" class="mb-3">
+        El número de teléfono es requerido
+      </mat-error>
+      <mat-error *ngIf="(phone?.errors?.['minlength'] || phone?.errors?.['maxlength']) && hasSubmitted" class="my-3">
+        El número de teléfono es requerido debe estar compuesto por 8 dígitos
+      </mat-error>
+      <mat-error *ngIf="phone?.errors?.['pattern'] && hasSubmitted" class="my-3">
+        Solo se aceptan números
+      </mat-error>
+      <input matInput placeholder="Correo" formControlName="email" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
+      <mat-error *ngIf="email?.errors?.['required'] && hasSubmitted" class="mb-3">
+        El correo es requerido
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email'] && hasSubmitted">
+        Por favor entre un correo con el formato correcto
+      </mat-error>
+      <input matInput type="password" placeholder="Contraseña" formControlName="password" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
+      <mat-error *ngIf="password?.errors?.['required'] && hasSubmitted" class="mb-3">
+        Debe ingresar la contraseña
+      </mat-error>
+      <mat-error *ngIf="(password?.errors?.['minlength'] || password?.errors?.['maxlength']) && hasSubmitted" class="mb-3">
+        La contraseña debe tener mínimo 8 carácteres
+      </mat-error>
+      <input matInput type="password" placeholder="Confirme contraseña" formControlName="confirmPassword" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
+      <mat-error *ngIf="confirmPassword?.errors?.['required'] && hasSubmitted" class="mb-3">
+        Debe ingresar la contraseña
+      </mat-error>
+      <mat-error *ngIf="(confirmPassword?.errors?.['minlength'] || confirmPassword?.errors?.['maxlength']) && hasSubmitted" class="mb-3">
+        La contraseña debe tener mínimo 8 carácteres
+      </mat-error>
+      <mat-error *ngIf="!equalPasswords" class="mb-3">
+        La contraseña debe tener mínimo 8 carácteres
+      </mat-error>
+      <div class="flex lg:w-2/12 w-auto justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="register()">
+        <p class="text-xl font-semibold">Register</p>
+      </div>
+    </form>
+  </div>
+</div>

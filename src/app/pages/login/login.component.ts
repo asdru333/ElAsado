@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit{
     return this.loginForm.get('password');
   }
 
+  navigateRegister() {
+    this.router.navigate(['register']);
+  }
+
   submit() {
     const { email, password } = this.loginForm.value;
 
