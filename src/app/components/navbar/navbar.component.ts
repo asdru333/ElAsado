@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   isLogin: boolean
 
   linksOne: Link[];
-  linksTwo: Link[];
+  //linksTwo: Link[];
   menu: Link[];
 
   user$: Observable<User | null>;
@@ -30,11 +30,6 @@ export class NavbarComponent implements OnInit {
     this.linksOne = [
       {name:"HOME",link:""},
       {name:"SOBRE NOSOTROS",link:"/about"},
-    ];
-
-    this.linksTwo = [
-      {name:"PROYECTOS",link:"/Proyectos"},
-      {name:"CONTACTO",link:"/Contacto"}
     ];
 
     this.menu = [

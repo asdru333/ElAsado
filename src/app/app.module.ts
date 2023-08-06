@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { AboutModule } from './pages/about/about.module';
 import { ContactModule } from './pages/contact/contact.module';
 import { LoginModule } from './pages/login/login.module';
 import { RegisterModule } from './pages/register/register.module';
 import { ForgotPasswordModule } from './pages/forgotPassword/forgotPassword.module';
+import { MenuModule } from './pages/menu/menu.module';
 import { Page404Module } from './pages/page404/page404.module';
+import { MinimenuModule } from './components/minimenu/minimenu.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +37,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     ContactModule,
     LoginModule,
     RegisterModule,
+    MenuModule,
     Page404Module,
+    MinimenuModule,
     ForgotPasswordModule,
     BrowserAnimationsModule,
     FormsModule,

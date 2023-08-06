@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MinimenuComponent } from './minimenu/minimenu.component';
 
 @Component({
   selector: 'app-home',
