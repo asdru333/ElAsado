@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgotPassword/forgotPassword.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
@@ -16,8 +17,9 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent, ...canActivate(redirectToHome)},
+  {path: 'register', component: RegisterComponent, ...canActivate(redirectToHome)},
+  {path: 'forgotPassword', component: ForgotPasswordComponent, ...canActivate(redirectToHome)},
   {path: '**', component: Page404Component}
 ];
 

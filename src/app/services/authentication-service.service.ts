@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, authState, createUserWithEmailAndPassword, updateProfile, UserInfo, UserCredential } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, authState, createUserWithEmailAndPassword, updateProfile, UserInfo, UserCredential, sendPasswordResetEmail } from '@angular/fire/auth';
 import { concatMap, from, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -25,5 +25,13 @@ export class AuthenticationServiceService {
 
   register(email: string, password: string): Observable<UserCredential> {
     return from(createUserWithEmailAndPassword(this.auth, email, password));
+  }
+
+  forgotPassword(email: string) : string {
+    let message : string = 'Hubo un error'
+    sendPasswordResetEmail(this.auth, email)
+    .then(() => {message = 'Se le envió un correo electrónico para restaurar su contraseña'})
+    .catch(() => {message = 'Hubo un error, verifique que haya ingresado el correo correcto y que esté registrado en nuestra página'});
+    return message
   }
 }

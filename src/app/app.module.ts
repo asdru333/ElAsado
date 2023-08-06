@@ -9,6 +9,7 @@ import { AboutModule } from './pages/about/about.module';
 import { ContactModule } from './pages/contact/contact.module';
 import { LoginModule } from './pages/login/login.module';
 import { RegisterModule } from './pages/register/register.module';
+import { ForgotPasswordModule } from './pages/forgotPassword/forgotPassword.module';
 import { Page404Module } from './pages/page404/page404.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +36,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     LoginModule,
     RegisterModule,
     Page404Module,
+    ForgotPasswordModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

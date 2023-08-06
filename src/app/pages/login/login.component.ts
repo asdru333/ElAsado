@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['register']);
   }
 
+  navigateForgotPassword() {
+    this.router.navigate(['forgotPassword']);
+  }
+
   submit() {
     const { email, password } = this.loginForm.value;
 
