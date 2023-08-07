@@ -29,7 +29,7 @@
         </div>
         <div class="lg:absolute lg:pl-0 md:pl-10 pl-2 relative z-10 bg-black text-white w-full rounded-md lg:w-72" [ngClass]="isOpenServices ? 'block' : 'hidden'">
           <div *ngFor="let item of menu" class='block mx-4 my-2'>
-            <p class="hover:text-asado-red">{{item.name}}</p>
+            <a routerLink={{item.link}} class="hover:text-asado-red">{{item.name}}</a>
           </div>
         </div>
       </div>

@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
   isLogin: boolean
 
   linksOne: Link[];
-  //linksTwo: Link[];
   menu: Link[];
 
   user$: Observable<User | null>;
@@ -29,13 +28,13 @@ export class NavbarComponent implements OnInit {
     this.user$ = this.authenticationService.getCurrentUser();
     this.linksOne = [
       {name:"HOME",link:""},
-      {name:"SOBRE NOSOTROS",link:"/about"},
+      {name:"SOBRE NOSOTROS",link:"about"},
     ];
 
     this.menu = [
-      {name:"Entradas", link:"/Servicios/Diseno-electrico-tramites-planos"},
-      {name:"Platos principales", link:"/Servicios/Diagnostico-instalaciones-eléctricas"},
-      {name:"Postres", link:"/Servicios/Medicion-calidad-energia"},
+      {name:"Entradas", link:"menu/entries"},
+      {name:"Platos principales", link:"menu/mainDishes"},
+      {name:"Postres", link:"menu/desserts"},
       {name:"Bebidas", link:"/Servicios/Pararrayos-mallas-puesta-tierra"},
     ];
   }

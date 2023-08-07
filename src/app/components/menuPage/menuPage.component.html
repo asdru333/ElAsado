@@ -1,0 +1,8 @@
+<p class="absolute text-4xl right-1/2 left-1/2 my-10" *ngIf="!hasLoaded">Cargando...</p>
+<div *ngFor="let item of items" class='flex flex-col md:w-96 w-full gap-y-4 md:self-auto self-center items-center'>
+  <img class="w-full h-80 object-cover self-center" src="{{item.img}}"/>
+  <p class="text-2xl text-center self-center">{{item.name}}</p>
+  <p class="text-lg text-center self-center">{{item.description}}</p>
+  <p class="text-lg text-center self-center">${{item.price}}</p>
+  <button class="p-4 bg-asado-red w-1/2" *ngIf="isLogin">Agregar al carrito</button>
+</div>
