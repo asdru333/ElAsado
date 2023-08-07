@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
       {name:"Entradas", link:"menu/entries"},
       {name:"Platos principales", link:"menu/mainDishes"},
       {name:"Postres", link:"menu/desserts"},
-      {name:"Bebidas", link:"/Servicios/Pararrayos-mallas-puesta-tierra"},
+      {name:"Bebidas", link:"menu/beverages"},
     ];
   }
 

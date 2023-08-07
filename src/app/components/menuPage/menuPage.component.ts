@@ -3,6 +3,7 @@ import { RetrieveServiceService } from 'src/app/services/retrieve-service.servic
 import { AuthenticationServiceService } from 'src/app/services/authentication-service.service';
 import { User } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menuPage',
@@ -12,13 +13,14 @@ import { Observable } from 'rxjs';
 export class MenuPageComponent implements OnInit {
 
   @Input() collection: string = "";
+  @Input() index : number = 0;
   items!: any[];
   isLogin: boolean;
   hasLoaded: boolean = false
   user$: Observable<User | null>;
 
 
-  constructor(private retrieveService : RetrieveServiceService, private authenticationService: AuthenticationServiceService) {
+  constructor(private router : Router, private retrieveService : RetrieveServiceService, private authenticationService: AuthenticationServiceService) {
     this.isLogin = false
     this.user$ = this.authenticationService.getCurrentUser();
   }
@@ -34,4 +36,7 @@ export class MenuPageComponent implements OnInit {
     });
   }
 
+  navigateTo(link : string) {
+    this.router.navigate([link])
+  }
 }

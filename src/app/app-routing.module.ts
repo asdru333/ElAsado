@@ -10,6 +10,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { EntriesComponent } from './pages/entries/entries.component';
 import { MainDishesComponent } from './pages/mainDishes/mainDishes.component';
 import { DessertsComponent } from './pages/desserts/desserts.component';
+import { BeveragesComponent } from './pages/beverages/beverages.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'menu/entries', component: EntriesComponent},
   {path: 'menu/mainDishes', component: MainDishesComponent},
   {path: 'menu/desserts', component: DessertsComponent},
+  {path: 'menu/beverages', component: BeveragesComponent },
   {path: '**', component: Page404Component}
 ];
 
