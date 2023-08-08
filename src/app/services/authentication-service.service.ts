@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, authState, createUserWithEmailAndPassword, updateProfile, UserInfo, UserCredential, sendPasswordResetEmail } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, authState, createUserWithEmailAndPassword, UserInfo, UserCredential, sendPasswordResetEmail } from '@angular/fire/auth';
 import { concatMap, from, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class AuthenticationServiceService {
 
   getCurrentUser() {
     return this.currentUser$;
+  }
+
+  getCurrentUserId() {
+    return this.auth.currentUser?.uid as string
   }
 
   register(email: string, password: string): Observable<UserCredential> {

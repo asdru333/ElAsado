@@ -36,9 +36,9 @@
       <div class='block mx-4 my-2'>
         <a routerLink="contact" class="hover:text-asado-red">CONTACTO</a>
       </div>
-      <div class='mx-4 my-2' [ngClass]="isLogin ? 'block' : 'hidden'">
+      <a routerLink="cart" class='mx-4 my-2' [ngClass]="isLogin ? 'block' : 'hidden'">
         <span class="material-icons text-3xl hover:text-asado-red">shopping_cart</span>
-      </div>
+      </a>
     </div>
   </div>
 </div>

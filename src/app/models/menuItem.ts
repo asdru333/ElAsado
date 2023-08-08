@@ -1,6 +1,6 @@
 export interface MenuItem {
   name: string,
-  description: string,
-  price: number,
-  img: string;
+  type: string,
+  quantity: number
+  userId: string
 };
