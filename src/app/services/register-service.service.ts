@@ -28,7 +28,7 @@ export class RegisterServiceService {
   addCart(item : MenuItem) {
     let path :string = ("users" + "/" + item.userId + "/" + "cart");
     const ref = doc(this.firestore, path, item.name);
-    console.log(ref)
+    console.log(ref, path)
     let message = getDoc(ref).then((doc) => {let message = "agregado al carrito"
       if (!(doc.exists())) {
         setDoc(ref, {name: item.name, type: item.type, quantity: item.quantity})
@@ -42,6 +42,17 @@ export class RegisterServiceService {
         }
       }
     }).catch(() => {return "error"});
+    return message;
+  }
+
+  updateCart(item : MenuItem) {
+    let path :string = ("users" + "/" + item.userId + "/" + "cart");
+    const ref = doc(this.firestore, path, item.name);
+    console.log(ref, path)
+    let message = getDoc(ref).then(() => {let message = "Modificado exitosamente";
+      setDoc(ref, {name: item.name, type: item.type, quantity: item.quantity})
+      return message;
+      }).catch(() => {return "error"});
     return message;
   }
 }
