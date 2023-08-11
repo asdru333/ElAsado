@@ -75,8 +75,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log("hola")
-
     this.authenticationService
     .register(email, password)
     .pipe(

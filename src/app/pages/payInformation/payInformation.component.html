@@ -1,0 +1,36 @@
+<div class="flex flex-grow min-h-[calc(100vh-20rem)] bg-img text-white py-8 2xl:px-48 xl:px-32 md:px-12 px-2 justify-center">
+  <div class="flex flex-col bg-gray-900 lg:w-1/2 w-full h-auto py-3 px-6 rounded-2xl justify-center gap-y-6">
+    <p class="text-center text-3xl mt-4 font-bold">Inicie sesión</p>
+    <form [formGroup]="payForm" class="flex flex-col">
+      <input matInput placeholder="Nombre completo" value={{userFullName}} (change)="nameHasChanged()" formControlName="fullName" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
+      <mat-error *ngIf="fullName?.errors?.['required'] && hasSubmitted && nameChanged" class="mb-3">
+        El nombre completo es requerido
+      </mat-error>
+      <input matInput placeholder="Telefono" value={{userPhone}} formControlName="phone" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
+      <mat-error *ngIf="phone?.errors?.['required'] && hasSubmitted && phoneChanged" class="mb-3">
+        El nombre completo es requerido
+      </mat-error>
+      <mat-error *ngIf="(phone?.errors?.['minlength'] || phone?.errors?.['maxlength']) && hasSubmitted" class="my-3">
+        El número de teléfono es requerido debe estar compuesto por 8 dígitos
+      </mat-error>
+      <mat-error *ngIf="phone?.errors?.['pattern'] && hasSubmitted" class="my-3">
+        Solo se aceptan números
+      </mat-error>
+      <div class="flex gap-x-2">
+        <div class="text-xl w-1/2 cursor-pointer py-4" (click)="selectLocal()" [ngClass]="localService ? 'bg-asado-red' : 'bg-black'">
+          <p class="text-white text-center">Local</p>
+        </div>
+        <div class="text-xl w-1/2 cursor-pointer py-4" (click)="selectExpress()" [ngClass]="expressService ? 'bg-asado-red' : 'bg-black'">
+          <p class="text-white text-center">Express</p>
+        </div>
+      </div>
+      <input matInput placeholder="Ubicación" formControlName="location" *ngIf="expressService" class="h-14 rounded-md pl-4 text-black text-xl my-3"/>
+      <mat-error *ngIf="location?.errors?.['required'] && hasSubmitted && expressService" class="mb-3">
+        Debe ingresar su ubicación
+      </mat-error>
+      <div class="flex lg:w-2/12 w-auto justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="submit()">
+        <p class="text-xl font-semibold">Pago</p>
+      </div>
+    </form>
+  </div>
+</div>

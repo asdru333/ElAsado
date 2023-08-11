@@ -16,6 +16,7 @@ import { MainDishesModule } from './pages/mainDishes/mainDishes.module';
 import { DessertsModule } from './pages/desserts/desserts.module';
 import { BeveragesModule } from './pages/beverages/beverages.module';
 import { CartModule } from './pages/cart/cart.module';
+import { PayInformationModule } from './pages/payInformation/payInformation.module';
 import { Page404Module } from './pages/page404/page404.module';
 import { MinimenuModule } from './components/minimenu/minimenu.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +49,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     DessertsModule,
     BeveragesModule,
     CartModule,
+    PayInformationModule,
     Page404Module,
     MinimenuModule,
     ForgotPasswordModule,

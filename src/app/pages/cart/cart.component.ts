@@ -97,6 +97,10 @@ export class CartComponent implements OnInit {
     this.hasChanged = true;
   }
 
+  navigateToPay() {
+    this.router.navigate(['payInformation']);
+  }
+
   saveChanges() {
     this.deletedItems.forEach((item) => {this.retrieveService.deleteDoc("users/"+this.userId+"/cart", item.name).catch((error) => {console.log(error); return})})
     let message = ""
