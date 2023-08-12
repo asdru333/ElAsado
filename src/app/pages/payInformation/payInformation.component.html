@@ -1,12 +1,15 @@
 <div class="flex flex-grow min-h-[calc(100vh-20rem)] bg-img text-white py-8 2xl:px-48 xl:px-32 md:px-12 px-2 justify-center">
-  <div class="flex flex-col bg-gray-900 lg:w-1/2 w-full h-auto py-3 px-6 rounded-2xl justify-center gap-y-6">
-    <p class="text-center text-3xl mt-4 font-bold">Inicie sesión</p>
+  <div class="flex flex-col bg-gray-900 lg:w-1/2 w-full h-auto py-3 px-6 rounded-2xl justify-center gap-y-6" *ngIf="hasPaid">
+    <p class="text-3xl font-bold text-center">El pedido se ha realizado con éxito...</p>
+  </div>
+  <div class="flex flex-col bg-gray-900 lg:w-1/2 w-full h-auto py-3 px-6 rounded-2xl justify-center gap-y-6" *ngIf="!hasPaid">
+    <p class="text-center text-3xl mt-4 font-bold">Información del pedido</p>
     <form [formGroup]="payForm" class="flex flex-col">
-      <input matInput placeholder="Nombre completo" value={{userFullName}} (change)="nameHasChanged()" formControlName="fullName" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
+      <input matInput placeholder="Nombre completo" (change)="nameHasChanged()" formControlName="fullName" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
       <mat-error *ngIf="fullName?.errors?.['required'] && hasSubmitted && nameChanged" class="mb-3">
         El nombre completo es requerido
       </mat-error>
-      <input matInput placeholder="Telefono" value={{userPhone}} formControlName="phone" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
+      <input matInput placeholder="Telefono" formControlName="phone" class="h-14 rounded-md pl-4 text-black text-xl mb-3"/>
       <mat-error *ngIf="phone?.errors?.['required'] && hasSubmitted && phoneChanged" class="mb-3">
         El nombre completo es requerido
       </mat-error>
@@ -28,7 +31,11 @@
       <mat-error *ngIf="location?.errors?.['required'] && hasSubmitted && expressService" class="mb-3">
         Debe ingresar su ubicación
       </mat-error>
-      <div class="flex lg:w-2/12 w-auto justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="submit()">
+      <p class="text-xl font-semibold text-center">Productos a comprar:</p>
+      <p class="whitespace-pre-line">{{products}}</p>
+      <p class="text-xl font-semibold text-center">Total a pagar: ${{totalPrice}}</p>
+      <div class="flex lg:w-2/12 w-auto justify-center p-2 bg-asado-red text-black self-center cursor-pointer mt-3" (click)="submit()"
+      *ngIf="this.products && this.totalPrice">
         <p class="text-xl font-semibold">Pago</p>
       </div>
     </form>

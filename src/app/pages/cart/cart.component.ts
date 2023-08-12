@@ -6,6 +6,7 @@ import { User } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MenuItem } from 'src/app/models/menuItem';
+import { PayItem } from 'src/app/models/payItem';
 
 @Component({
   selector: 'app-cart',
@@ -97,7 +98,11 @@ export class CartComponent implements OnInit {
     this.hasChanged = true;
   }
 
-  navigateToPay() {
+  async navigateToPay() {
+    let allProducts : string = ""
+    this.items.forEach((item) => {allProducts = allProducts + (item.name + " x" + item.quantity + "\n")})
+    let payItem : PayItem = {products : allProducts, totalPrice: this.totalPrice, userId: this.userId};
+    await this.registerService.addPay(payItem)
     this.router.navigate(['payInformation']);
   }
 

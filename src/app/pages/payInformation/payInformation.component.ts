@@ -23,6 +23,10 @@ export class PayInformationComponent implements OnInit {
   userPhone! : number;
   nameChanged: boolean;
   phoneChanged: boolean;
+  products! : string;
+  totalPrice! : number;
+  hasPaid : boolean;
+
 
   ngOnInit(): void {
     this.user$.subscribe(user => {
@@ -45,6 +49,7 @@ export class PayInformationComponent implements OnInit {
     this.nameChanged = false;
     this.phoneChanged = false;
     this.user$ = this.authenticationService.getCurrentUser();
+    this.hasPaid = false
   }
 
   get fullName() {
@@ -60,10 +65,24 @@ export class PayInformationComponent implements OnInit {
   }
 
   loadPage() {
-    this.retrieveService.getDoc("users", this.authenticationService.getCurrentUserId()).then((doc) => {
+    let userId = this.authenticationService.getCurrentUserId()
+    this.retrieveService.getDoc("users", userId).then((doc) => {
       this.userFullName = doc.get('name') + ' ' + doc.get('surnames');
       this.userPhone = doc.get('phone');
+      this.payForm.controls['fullName'].setValue(this.userFullName)
+      this.payForm.controls['phone'].setValue(this.userPhone)
     })
+    this.getPayInfo(userId);
+  }
+
+  getPayInfo(userId : string) {
+    this.retrieveService.getDoc("pays", userId).then((doc) => {
+      this.products = doc.get('products');
+      this.totalPrice = doc.get('totalPrice');
+    })
+    if (!this.products || !this.totalPrice) {
+      setTimeout(() => {console.log("2"); this.getPayInfo(userId)}, 1000)
+    }
   }
 
   selectLocal() : void {
@@ -85,11 +104,16 @@ export class PayInformationComponent implements OnInit {
   }
 
   submit() : void {
-    const { name, surnames, phone} = this.payForm.value;
-
-    if (!this.payForm.valid || !name || !surnames || !phone) {
-      this.hasSubmitted = true
+    if (this.localService) {
+      this.payForm.controls['location'].setValue("El asado")
+      console.log("location")
+    }
+    const { fullName, phone, location} = this.payForm.value;
+    if (!this.payForm.valid || !fullName || !phone || !location) {
+      this.hasSubmitted = true;
       return;
     }
+    this.hasPaid = true;
+    setInterval(() => {this.router.navigate(["/"])}, 3000)
   }
 }

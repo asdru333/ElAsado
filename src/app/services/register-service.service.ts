@@ -12,6 +12,7 @@ import { filter, from, map, Observable, of, switchMap } from 'rxjs';
 import { AuthenticationServiceService } from './authentication-service.service';
 import { UserModel } from '../models/userModel';
 import { MenuItem } from '../models/menuItem';
+import { PayItem } from '../models/payItem';
 
 @Injectable({
   providedIn: 'root'
@@ -48,11 +49,16 @@ export class RegisterServiceService {
   updateCart(item : MenuItem) {
     let path :string = ("users" + "/" + item.userId + "/" + "cart");
     const ref = doc(this.firestore, path, item.name);
-    console.log(ref, path)
     let message = getDoc(ref).then(() => {let message = "Modificado exitosamente";
       setDoc(ref, {name: item.name, type: item.type, quantity: item.quantity})
       return message;
       }).catch(() => {return "error"});
     return message;
+  }
+
+  async addPay(item : PayItem) {
+    const ref = doc(this.firestore, "pays", item.userId);
+    getDoc(ref).then(() => { setDoc(ref, item) }).catch(() => {console.log("error")});
+    return;
   }
 }
