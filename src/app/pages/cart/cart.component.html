@@ -21,7 +21,7 @@ xl:gap-x-8 lg:gap-x-2 gap-y-8">
         <p class="text-lg text-center">{{item.quantity}}</p>
         <span class="material-icons text-asado-red text-center cursor-pointer select-none" (click)="addQuantity(item)">add_circle</span>
       </div>
-      <p class="text-lg text-center self-center">Total: ${{item.price*item.quantity}}</p>
+      <p class="text-lg text-center self-center">Total: ${{roundPrice(item.price*item.quantity)}}</p>
       <button class="p-4 bg-asado-red text-black w-1/2 text-2xl" (click)="deleteItem(item)">Eliminar</button>
     </div>
   </div>

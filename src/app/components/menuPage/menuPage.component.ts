@@ -73,7 +73,7 @@ export class MenuPageComponent implements OnInit {
         type = "desserts";
         break;
       case 3:
-        type = "beverage";
+        type = "beverages";
         break;
       default:
         console.log("food type error")

@@ -68,9 +68,13 @@ export class CartComponent implements OnInit {
       item.quantity = item.quantity + 1;
       item.isModified = true;
       this.totalPrice = this.totalPrice + item.price;
-      this.totalPrice = Math.round(this.totalPrice * 100) /100
+      this.totalPrice = Math.round(this.totalPrice * 100) / 100
       this.hasChanged = true;
     }
+  }
+
+  roundPrice(price : number) : number {
+    return Math.round(price * 100) / 100
   }
 
   subtractQuantity(item : any) {
@@ -107,18 +111,19 @@ export class CartComponent implements OnInit {
   }
 
   saveChanges() {
-    this.deletedItems.forEach((item) => {this.retrieveService.deleteDoc("users/"+this.userId+"/cart", item.name).catch((error) => {console.log(error); return})})
+    this.deletedItems.forEach((item) => {this.retrieveService.deleteDocument("users/"+this.userId+"/cart", item.name).catch((error) => {console.log(error); return})})
     let message = ""
     this.items.forEach(async (item) => {
       if (item.isModified) {
         let menuItem : MenuItem = {name: item.name, type: item.type, quantity: item.quantity, userId: this.userId};
         message = await this.registerService.updateCart(menuItem);
-        if (message.length > 0 && !message.includes("error")) {
-          this.originalTotalPrice = this.totalPrice;
-          this.originalItems= structuredClone(this.items);
+        if (message.length == 0 || message.includes("error")) {
+          return;
         }
       }
     });
+    this.originalTotalPrice = this.totalPrice;
+    this.originalItems= structuredClone(this.items);
     this.hasChanged = false;
   }
 }

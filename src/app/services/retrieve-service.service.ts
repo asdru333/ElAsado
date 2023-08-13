@@ -30,8 +30,14 @@ export class RetrieveServiceService {
     return getDoc(doc(this.db, collection, id));
   }
 
-  async deleteDoc(collection: string, id: string) {
-    console.log(collection)
+  async deleteDocument(collection: string, id: string) {
     deleteDoc(doc(this.db, collection, id))
+  }
+
+  async deleteUserCart(user: string) {
+    let path : string = "users/" + user +"/cart"
+    const ref = collection(this.db, path);
+    const docs =  await getDocs(ref);
+    docs.forEach((doc) => deleteDoc(doc.ref))
   }
 }

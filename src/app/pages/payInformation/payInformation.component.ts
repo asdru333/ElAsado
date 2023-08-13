@@ -106,7 +106,6 @@ export class PayInformationComponent implements OnInit {
   submit() : void {
     if (this.localService) {
       this.payForm.controls['location'].setValue("El asado")
-      console.log("location")
     }
     const { fullName, phone, location} = this.payForm.value;
     if (!this.payForm.valid || !fullName || !phone || !location) {
@@ -114,6 +113,7 @@ export class PayInformationComponent implements OnInit {
       return;
     }
     this.hasPaid = true;
+    this.retrieveService.deleteUserCart(this.authenticationService.getCurrentUserId())
     setInterval(() => {this.router.navigate(["/"])}, 3000)
   }
 }
